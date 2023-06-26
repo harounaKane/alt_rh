@@ -2,27 +2,22 @@
 
 include "Compte.php";
 include "Personne.php";
-$p1 = new Personne("Julie", "Dupond", 25, "Nantes");
-$c1 = new Compte(1001, new Personne("Jean", "Pierre", 35), 1500);
-$c2 = new Compte(1002, $p1, 250);
 
-echo $c1;
-echo "<br>";
-echo $c2; 
 
-// echo $c1->getSolde();
- echo "<br>";
- echo $c2->getSolde();
+$tab = [];
 
-// echo "<br>";
-// $c1->virerVers(200, $c2);
+for ($i=0; $i < 10; $i++) { 
+     $tab[] = new Compte(100+$i, new Personne("", "", 10), 200 + 100*$i);
+}
 
-// echo $c1->getSolde();
-// echo "<br>";
-// echo $c2->getSolde();
+for ($i=0; $i < 10; $i++) { 
+     for ($j=1+$i; $j < count($tab) ; $j++) { 
+          $tab[$i]->virerVers(20, $tab[$j]);
+     }
+}
 
-// echo $c1->getTitulaire();
-// $c1->setSolde("truc");
+for ($i=0; $i < count($tab); $i++) { 
+     echo $tab[$i]->getSolde();
+     echo "<br>";
+}
 
-// echo "<br>";
-// echo $c1->getSolde();
