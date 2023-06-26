@@ -38,7 +38,7 @@ class Compte{
      }
 
      public function getSolde() :float{
-          return '$this->solde';
+          return $this->solde;
      }
 
      public function setTitulaire($titulaire){
