@@ -5,7 +5,7 @@
           <?php for($i=0; $i<5; $i++): ?>
                <ul class="list-group my-2">
                     <li class="list-group-item text-info">
-                         <a href="vues/article.php?id=<?= $i+1; ?>">
+                         <a href="article.php?id=<?= $i+1; ?>">
                               <i class="fa-regular fa-hand-point-right"></i> article <?= $i+1; ?>
                          </a>
                     </li>

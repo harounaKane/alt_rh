@@ -12,10 +12,10 @@
 <body>
 
      <header class="text-center bg-dark p-5 text-white mb-3">
-          <h1><i class="fa-solid fa-microphone"></i> Encore un blog </h1>
+          <h1><a href="index.php"><i class="fa-solid fa-microphone"></i> Encore un blog</a> </h1>
 
           <div class="d-flex justify-content-end">
-               <a href="vues/admin.php"><i class="fa-solid fa-cogs"></i> Administration</a>
+               <a href="admin.php"><i class="fa-solid fa-cogs"></i> Administration</a>
           </div>
      </header>
      <main class="container-fluid">

@@ -1,4 +1,3 @@
-<?php include '../inc/header.php'; ?>
 
      <h2 class="text-info"><i class="fa-regular fa-file-lines"></i> Article</h2>
      <div>article  </div>
@@ -33,5 +32,3 @@
                </div>
           </form>
      </div>
-
-<?php include '../inc/footer.php'; ?>
