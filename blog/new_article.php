@@ -1,12 +1,9 @@
 <?php 
 include "entities/Auteur.php";
 include "entities/Categorie.php";
+include "entities/Article.php";
 
-include 'inc/header.php';
-
-$pdo = new PDO(
-     "mysql:host=localhost;dbname=rh_blog","root", ""
-);
+include "inc/connect.php";
 
 //récup des auteurs
 $stmt = $pdo->prepare("SELECT * FROM auteur");
@@ -30,6 +27,31 @@ $tab = [];
  }
 
 
+ //insertion des articles
+ if( isset($_POST['titre']) ){
+     extract($_POST);
+     $article = new Article(0, $titre, $contenu, "", $auteur, $categorie);
+
+     // $query = "INSERT INTO article VALUES(NULL, ?, ?, now(), ?, ?)";
+     // $query = "INSERT INTO article(titre, contenu, auteur, categorie) VALUES(?, ?, ?, ?)";
+
+     $query = "INSERT INTO article VALUES(NULL, :titre, :contenu, now(), :auteur, :categorie)";
+
+     $stmt = $pdo->prepare($query);
+
+     $stmt->execute([
+          "titre"        => $article->getTitre(),
+          "contenu"      => $article->getContenu(),
+          "auteur"       => $article->getAuteur(),
+          "categorie"    => $article->getCategorie()
+     ]);
+
+     header("location: index.php");
+     exit;
+
+ }
+
+ include 'inc/header.php';
 include "vues/vue_new_article.php";
 
 

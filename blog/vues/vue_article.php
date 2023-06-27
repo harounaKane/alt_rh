@@ -1,7 +1,9 @@
 
      <h2 class="text-info"><i class="fa-regular fa-file-lines"></i> Article</h2>
      <div>article  </div>
-     <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem, corporis.</div>
+     <div>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem, corporis.
+     </div>
      <div>Rédigé par Toto le 27/06/2023</div>
 
 

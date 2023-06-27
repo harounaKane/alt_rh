@@ -8,7 +8,7 @@ class Article{
      private $categorie;
      private $auteur;
 
-     public function __construct($id=0, $titre = null, $contenu = null, $date_creation = null, $categorie = null, $auteur = null)
+     public function __construct($id=0, $titre = null, $contenu = null, $date_creation = null, $auteur = null, $categorie = null)
      {
           $this->id = $id;
           $this->titre = $titre;
