@@ -3,7 +3,7 @@
 class Bibliotheque{
      private $livres = [];
 
-     public function __construct($livres)
+     public function __construct($livres = null)
      {
           $this->livres = $livres;
      }

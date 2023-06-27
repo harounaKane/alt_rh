@@ -15,7 +15,7 @@
      </header>
 
      <main class="container-fluid my-5">
-         <form action="index.php" method="post">
+         <form action="" method="post">
                <div class="form-group">
                     <label for="">Titre</label>
                     <input type="text" name="titre" class="form-control">
@@ -36,3 +36,29 @@
      
 </body>
 </html>
+
+<?php 
+include "Livre.php";
+
+if( !empty($_POST['titre']) ){
+
+     $pdo = new PDO(
+          "mysql:host=localhost;dbname=rh_bibliotheque","root", ""
+     );
+
+     $livre = new Livre($_POST['titre'], $_POST['auteur'], $_POST['editeur']);
+
+     $query = "INSERT INTO livre VALUES(?, ?, ?)";
+    
+
+     $stmt = $pdo->prepare($query);
+    
+     $stmt->execute([
+          $livre->getTitre(), 
+          $livre->getAuteur(), 
+          $livre->getEditeur()]);
+
+     header("location: index.php");
+     exit;
+        
+}

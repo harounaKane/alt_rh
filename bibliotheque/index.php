@@ -3,17 +3,26 @@
 include "Livre.php";
 include "Bibliotheque.php";
 
-$l1 = new Livre("Oui Commandant", "Hampaté", "Truc");
-$l2 = new Livre("Hamcoulele", "Hampaté", "Truc");
+$pdo = new PDO(
+     "mysql:host=localhost;dbname=rh_bibliotheque","root", ""
+);
 
-$b1 = new Bibliotheque([$l1, $l2]);
+$stmt = $pdo->prepare("SELECT * FROM livre");
 
-if( !empty($_POST['titre']) ){
-     $livre = new Livre($_POST['titre'], $_POST['auteur'], $_POST['editeur']);
-     $b1->ajouter($livre);    
+$stmt->execute();
+
+if( $stmt->rowCount() != 0 ){
+
+     $b1 = new Bibliotheque();
+
+     while( $resultat = $stmt->fetch() ){
+          $livre = new Livre($resultat['titre'], $resultat['auteur'], $resultat['editeur']);
+          $b1->ajouter($livre);
+     }
+  
 }
 
-$biblio = $b1->getLivres();
+
 
 ?>
 <!DOCTYPE html>
@@ -40,13 +49,13 @@ $biblio = $b1->getLivres();
                     <th>Editeur</th>
                </tr>
 
-               <?php for($i=0; $i < count($biblio); $i++): ?>
+               <?php foreach($b1->getLivres() as $key => $livre): ?>
                     <tr>
-                         <td> <?php echo $biblio[$i]->getTitre(); ?> </td>
-                         <td> <?= $biblio[$i]->getAuteur(); ?> </td>
-                         <td> <?= $biblio[$i]->getEditeur(); ?> </td>
+                         <td> <?php echo $livre->getTitre(); ?> </td>
+                         <td> <?= $livre->getAuteur(); ?> </td>
+                         <td> <?= $livre->getEditeur(); ?> </td>
                     </tr>
-               <?php endfor; ?>
+               <?php endforeach; ?>
 
           </table>
      </main>
