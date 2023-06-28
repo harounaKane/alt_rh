@@ -1,0 +1,110 @@
+<?php
+
+class User{
+     private $id;
+     private $sexe;
+     private $prenom;
+     private $nom;
+     private $login;
+     private $mdp;
+     private $role;
+
+     public function __construct($id, $sexe, $prenom, $nom, $login, $mdp, $role)
+     {
+          $this->setId($id);
+          $this->setSexe($sexe);
+          $this->setPrenom($prenom);
+          $this->setNom($nom);
+          $this->setLogin($login);
+          $this->setMdp($mdp);
+          $this->setRole($role);
+     }
+
+     
+
+     public function getId()
+     {
+          return $this->id;
+     }
+
+     public function setId($id): self
+     {
+          $this->id = $id;
+
+          return $this;
+     }
+
+     public function getSexe()
+     {
+          return $this->sexe;
+     }
+
+     public function setSexe($sexe): self
+     {
+          $this->sexe = $sexe;
+
+          return $this;
+     }
+
+     public function getPrenom()
+     {
+          return $this->prenom;
+     }
+
+     public function setPrenom($prenom): self
+     {
+          $this->prenom = $prenom;
+
+          return $this;
+     }
+
+     public function getNom()
+     {
+          return $this->nom;
+     }
+
+     public function setNom($nom): self
+     {
+          $this->nom = $nom;
+
+          return $this;
+     }
+
+     public function getLogin()
+     {
+          return $this->login;
+     }
+
+     public function setLogin($login): self
+     {
+          $this->login = $login;
+
+          return $this;
+     }
+
+
+     public function getMdp()
+     {
+          return $this->mdp;
+     }
+
+
+     public function setMdp($mdp): self
+     {
+          $this->mdp = $mdp;
+
+          return $this;
+     }
+
+     public function getRole()
+     {
+          return $this->role;
+     }
+
+     public function setRole($role): self
+     {
+          $this->role = $role;
+
+          return $this;
+     }
+}
