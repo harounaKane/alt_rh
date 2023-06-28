@@ -50,7 +50,47 @@ class UserModel{
 
           }
           
-          
+     }
+
+     public function isConnected(){
+          if( isset($_SESSION['user']) ){
+               return true;
+          }
+
+          return false;
+     }
+
+     public function isAdmin(){
+          if( $this->isConnected() && unserialize($_SESSION['user'])->getRole() == "admin" ){
+               return true;
+          }
+
+          return false;
+     }
+
+     public function getUser($id){
+          $stmt = $this->pdo->prepare("SELECT * FROM user WHERE id = ?");
+          $stmt->execute([$id]);
+
+          extract($stmt->fetch());
+
+          return new User($id, $sexe, $prenom, $nom, $login, $mdp, $role);
+     }
+
+     
+     public function getUsers(){
+          $stmt = $this->pdo->prepare("SELECT * FROM user");
+          $stmt->execute();
+
+          $tab = [];
+
+          while($res = $stmt->fetch()){
+               extract($res);
+
+               $tab[] = new User($id, $sexe, $prenom, $nom, $login, $mdp, $role);
+          }
+
+          return $tab;
      }
 
 }

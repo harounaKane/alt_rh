@@ -2,9 +2,13 @@
 session_start();
 
 include "entities/User.php";
+include "entities/Voiture.php";
+
 include "model/UserModel.php";
+include "model/VoitureModel.php";
 
 $userModel = new UserModel;
+$voitureModel = new VoitureModel;
 
 include "views/header.phtml";
 
@@ -28,6 +32,15 @@ if( isset($_GET['action']) ){
                     exit;
                }
                break;
+          case "new_voiture":
+               $users = $userModel->getUsers();
+               include "views/new_voiture.phtml";
+               if( isset($_POST['marque']) ){
+                    $voitureModel->addVoiture();
+                    header("location: .");
+                    exit;
+               }
+               break;
           case "deconnexion":
                session_destroy();
                header("location: .");
@@ -35,4 +48,8 @@ if( isset($_GET['action']) ){
                break;
      }
 
+}else{
+     $users = $userModel->getUsers();
+     $voitures = $voitureModel->getVoitures();
+     include "views/home.phtml";
 }

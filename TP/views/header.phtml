@@ -12,12 +12,18 @@
 <body>
 
      <header class="text-center bg-dark p-5 text-white mb-3">
-          <a href="?action=inscription" class="btn btn-success">Inscription</a>
-          <a href="?action=connexion" class="btn btn-success">Connexion</a>
-          <a href="?action=deconnexion" class="btn btn-danger">Deconnexion</a>
+          
+          <?php if( $userModel->isConnected()): ?>
+               <?php if( $userModel->isAdmin() ): ?>
+                    <a href="?action=new_user" class="btn btn-success">Ajouter user</a>
+                    <a href="?action=new_voiture" class="btn btn-success">Ajouter Voiture</a>
+               <?php endif; ?>
 
-          <?php if(isset($_SESSION['user'])): ?>
+               <a href="?action=deconnexion" class="btn btn-danger">Deconnexion</a>
                <div> Bonjour <?= unserialize($_SESSION['user'])->getPrenom() ?> </div>
+          <?php else: ?>
+               <a href="?action=inscription" class="btn btn-success">Inscription</a>
+               <a href="?action=connexion" class="btn btn-success">Connexion</a>
           <?php endif; ?>
      </header>
      <main class="container-fluid">
