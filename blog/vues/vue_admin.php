@@ -13,18 +13,18 @@
                <th>Action</th>
           </tr>
 
-          <?php for($i=0; $i<3; $i++): ?>
+          <?php foreach($tabArticles as $article): ?>
                <tr>
-                    <td> article <?= $i+1; ?> </td>
-                    <td> contenu article <?= $i+1; ?> </td>
-                    <td> auteur article <?= $i+1; ?> </td>
-                    <td> catégorie article <?= $i+1; ?> </td>
+                    <td> <?= $article->getTitre(); ?> </td>
+                    <td> <?= substr($article->getContenu(), 0, 15); ?> </td>
+                    <td> <?= $article->getAuteur()->getPrenom(); ?> </td>
+                    <td> <?= $article->getCategorie(); ?> </td>
                     <td>
-                         <a href=""><i class="fa-solid fa-pen"></i></a>
+                         <a href="new_article.php?id=<?= $article->getId(); ?>&action=update"><i class="fa-solid fa-pen"></i></a>
                          &nbsp; - &nbsp;
-                         <a href=""><i class="fa-solid fa-trash"></i></a>
+                         <a href="new_article.php?id=<?= $article->getId(); ?>&action=delete"><i class="fa-solid fa-trash"></i></a>
                     </td>
                </tr>
-          <?php endfor; ?>
+          <?php endforeach; ?>
 
      </table>

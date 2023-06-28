@@ -2,20 +2,8 @@
 
 include "inc/connect.php";
 
-$stmt = $pdo->prepare("SELECT * FROM article");
 
-$stmt->execute();
-
-$tabArt = [];
-
-while($res = $stmt->fetch()){
-     extract($res);
-
-     $auteur = getAuteur($auteur);
-
-     $article = new Article($id, $titre, $contenu, $date_creation, $auteur, $categorie);
-     $tabArt[] = $article;
-}
+$tabArt = articles();;
 
 
 include 'inc/header.php'; 
