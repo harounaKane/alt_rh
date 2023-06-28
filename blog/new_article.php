@@ -1,8 +1,4 @@
 <?php 
-include "entities/Auteur.php";
-include "entities/Categorie.php";
-include "entities/Article.php";
-
 include "inc/connect.php";
 
 //récup des auteurs

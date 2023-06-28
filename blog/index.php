@@ -11,6 +11,8 @@ $tabArt = [];
 while($res = $stmt->fetch()){
      extract($res);
 
+     $auteur = getAuteur($auteur);
+
      $article = new Article($id, $titre, $contenu, $date_creation, $auteur, $categorie);
      $tabArt[] = $article;
 }
@@ -28,9 +30,9 @@ include 'inc/header.php';
                               <i class="fa-regular fa-hand-point-right"></i> <?= $article->getTitre(); ?>
                          </a>
                     </li>
-                    <li class="list-group-item">Contenu ...</li>
+                    <li class="list-group-item"><?= substr($article->getContenu(), 0, 20); ?> [...]</li>
                     <li class="list-group-item">Rédigé par 
-                         <strong><?= $article->getAuteur()." le ". $article->getDateCreation(); ?></strong>
+                         <strong><?= $article->getAuteur()->getPrenom()." le ". $article->getDateCreation(); ?></strong>
                     </li>
                </ul>
           <?php endforeach; ?>

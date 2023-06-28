@@ -1,24 +1,25 @@
 
      <h2 class="text-info"><i class="fa-regular fa-file-lines"></i> Article</h2>
-     <div>article  </div>
+     <div><?= $article->getTitre(); ?>  </div>
      <div>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem, corporis.
+          <?= $article->getContenu(); ?> 
      </div>
-     <div>Rédigé par Toto le 27/06/2023</div>
+     <div>Rédigé par <strong><?= $article->getAuteur()->getPrenom(). " le ". $article->getDateCreation(); ?> </strong></div>
 
 
      <hr>
-     <?php for($i=0; $i<3; $i++): ?>
-          <i class="fa-solid fa-comment"></i> Rédigé par Pseudo 1 
+     <?php foreach($tabComment as $comment): ?>
+          <i class="fa-solid fa-comment"></i> Rédigé par <?= $comment->getPseudo(); ?> 
           <div class="mb-4">
-               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis nihil fuga ut optio molestias! Doloribus laudantium sequi totam dolore dignissimos.
+               <?= $comment->getContenu(); ?> 
           </div>
-     <?php endfor; ?>
+     <?php endforeach; ?>
      <hr>
 
      <div class="d-flex justify-content-center flex-column align-items-center">
           <div class="text-center"><i class="fa-regular fa-comment"></i> Commentaire</div>
           <form action="" method="post">
+               <input type="hidden" name="id_article" value="<?= $article->getId(); ?>">
                <div class="form-group">
                     <label for="">Pseudo</label>
                     <input type="text" name="pseudo" class="form-control">

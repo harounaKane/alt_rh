@@ -5,15 +5,15 @@ class Commentaire{
      private $pseudo;
      private $contenu;
      private $date_commentaire;
-     private $article;
+     private $id_article;
 
-     public function __construct($id = 0, $pseudo = null, $contenu = null, $date_commentaire = null, $article = null)
+     public function __construct($id = 0, $pseudo = null, $contenu = null, $date_commentaire = null, $id_article = null)
      {
           $this->id = $id;
           $this->pseudo = $pseudo;
           $this->contenu = $contenu;
           $this->date_commentaire = $date_commentaire;
-          $this->article = $article;
+          $this->id_article = $id_article;
           
      }     
 
@@ -92,17 +92,17 @@ class Commentaire{
      /**
       * Get the value of article
       */
-     public function getArticle()
+     public function getIdArticle()
      {
-          return $this->article;
+          return $this->id_article;
      }
 
      /**
       * Set the value of article
       */
-     public function setArticle($article): self
+     public function setIdArticle($id_article): self
      {
-          $this->article = $article;
+          $this->id_article = $id_article;
 
           return $this;
      }
