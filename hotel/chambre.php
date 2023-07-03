@@ -2,18 +2,31 @@
 include "inc.php";
 include 'component/header.php'; 
 
-?> 
 
-<h2 class="bg-dark text-center text-white">Détail chambre</h2>
+if( isset($_GET['idChambre']) && ctype_digit($_GET['idChambre'])): ?> 
 
-<img class="img-fluid" src="img/c1.jpg" alt="Card image cap">
-<div> Prix : 500 </div>
-<div> Lits : 500 </div>
-<div> Personnes : 500 </div>
-<div> 
-     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur, placeat? Eveniet possimus, deleniti laudantium provident quibusdam vero culpa harum reiciendis? 
-</div>
+     <?php
+          $stmt = executerRequete("SELECT * FROM chambre WHERE numChambre = :id", ['id' => $_GET['idChambre']]);
 
-<a href="reserver.php?id_chambre=1" class="btn btn-success">Réserver</a>
+          extract($stmt->fetch());
 
-<?php include 'component/footer.php'; ?>
+          $chambre = new Chambre($numChambre, $prix, $nbLits, $nbPers, $image, $description);
+     
+     ?>
+
+     <h2 class="bg-dark text-center text-white">Détail chambre</h2>
+
+     <img class="img-fluid" src="img/<?= $chambre->getImage() ?>" alt="Card image cap">
+     <div> Prix : <?= $chambre->getPrix() ?> </div>
+     <div> Lits : <?= $chambre->getNbLits() ?> </div>
+     <div> Personnes : <?= $chambre->getNbPers() ?> </div>
+     <div> 
+          <?= $chambre->getDescription() ?>
+     </div>
+
+     <a href="reserver.php?id_chambre=<?= $chambre->getNumChambre() ?>" class="btn btn-success">Réserver</a>
+
+<?php 
+endif;
+include 'component/footer.php'; 
+

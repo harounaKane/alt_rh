@@ -4,7 +4,36 @@ include 'component/header.php';
 
 if( isset($_POST["prix"]) ){
      extract($_POST);
-     $c = new Chambre(0, $prix, $nblits, $nbpers, $image, $description);
+     $nom_fichier = "";
+
+     //teste si un fichier a été uploader
+     if( !empty($_FILES['image']['name']) ){
+
+          //teste sur la taille
+          if( $_FILES['image']['size'] <= 1000000){
+
+               //tableau des extensions de fichiers autorisés
+               $extensions = ['jpg', 'jpeg', 'png'];
+
+               //info fichier uploadé
+               $info = pathinfo($_FILES['image']['name']);
+
+               //teste si l'extension du fichier est dans la collection des extansions autorisées
+               if( in_array($info['extension'], $extensions) ){
+
+                    //nom du fichier
+                    $nom_fichier = $info['basename'];
+
+                    //déplacer le fichier dans le répertoire img
+                    move_uploaded_file($_FILES['image']['tmp_name'], "img/" . $nom_fichier);
+                   
+               }               
+          }
+
+     }
+
+
+     $c = new Chambre(0, $prix, $nblits, $nbpers, $nom_fichier, $description);
 
      $query = "INSERT INTO chambre VALUES(NULL, :prix, :lit, :pers, :img, :desc)";
 
@@ -16,12 +45,14 @@ if( isset($_POST["prix"]) ){
           "desc"    => $c->getDescription()
      ]);
 
-     var_dump($c);
+     //redirection vers l'index. ça permet d'éviter la double soumission du formulaire
+     header("location: .");
+     exit;
 }
 
 ?> 
 
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
 
      <div class="row">
           <div class="form-group col-6">
@@ -39,7 +70,7 @@ if( isset($_POST["prix"]) ){
           </div>
           <div class="form-group col-6">
                <label for="">Image</label>
-               <input type="file" name="image" class="form-control">
+               <input type="file" name="image" accept="image/*" class="form-control">
           </div>
 
           <div class="form-group col-6">
