@@ -16,6 +16,21 @@ while( $res = $stmt->fetch() ){
      $tabChambres[] = $c;
 }
 
+
+//UPDATE & DELETE
+if( isset($_GET['action']) ){
+     $action = $_GET['action'];
+
+     switch($action){
+          case 'delete':
+               echo "cas delete";
+               break;
+          case 'update':
+               echo "cas update";
+               break;
+     }
+}
+
 ?> 
 
 
@@ -30,8 +45,8 @@ foreach ($tabChambres as $chambre): ?>
 
                <!-- access admin -->
                <?php if( isset($_SESSION['user']) && unserialize($_SESSION['user'])->getRole() == "admin" ): ?>
-                    <a href="chambre.php?action=update&idChambre=<?= $chambre->getNumChambre(); ?>" class="btn btn-outline-success my-1 w-100">Update</a>
-                    <a href="chambre.php?action=delete&idChambre=<?= $chambre->getNumChambre(); ?>" class="btn btn-outline-danger my-1 w-100">Delete</a>
+                    <a href="?action=update&idChambre=<?= $chambre->getNumChambre(); ?>" class="btn btn-outline-success my-1 w-100">Update</a>
+                    <a href="?action=delete&idChambre=<?= $chambre->getNumChambre(); ?>" class="btn btn-outline-danger my-1 w-100">Delete</a>
                <?php endif; ?>
           </div>
      </div>
