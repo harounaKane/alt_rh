@@ -11,12 +11,23 @@
      <header class="bg-secondary p-3">
           <h1 class="text-center"><a href="index.php">Hôtel</a></h1>
           <nav>
-               <a href="login.php" class="btn btn-success">login</a>
-               <a href="login.php?action=logout" class="btn btn-danger">logout</a>
-               <a href="reservations.php" class="btn btn-success">reservations</a>
-               <a href="ajouter.php" class="btn btn-success">ajouter</a>
-
+               <!-- teste si y a connexion -->
+               <?php if( isset($_SESSION['user']) ): ?>
+                    <a href="login.php?action=logout" class="btn btn-danger">logout</a>
+                    <a href="reservations.php" class="btn btn-success">reservations</a>
+                    <!-- teste si admin -->
+                    <?php if( unserialize($_SESSION['user'])->getRole() == "admin" ): ?>
+                         <a href="ajouter.php" class="btn btn-success">ajouter</a>
+                    <?php endif; ?>
+               <?php else: ?>
+                    <a href="login.php" class="btn btn-success">login</a>
+               <?php endif; ?>
           </nav>
+                    <!-- on teste si la session existe -->
+          <div> <?= isset($_SESSION['user']) 
+                         ? unserialize($_SESSION['user'])->getRole() 
+                         : ''; ?> 
+          </div>
      </header>
      <main class="container-fluid mt-3">
      

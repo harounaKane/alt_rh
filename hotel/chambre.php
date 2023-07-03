@@ -1,4 +1,8 @@
-<?php include 'component/header.php'; ?>
+<?php 
+include "inc.php";
+include 'component/header.php'; 
+
+?> 
 
 <h2 class="bg-dark text-center text-white">Détail chambre</h2>
 

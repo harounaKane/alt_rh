@@ -8,24 +8,122 @@ class Chambre {
      private $image;
      private $description;
 
-     public function __construct($id, $lits)
+     public function __construct($numChambre, $prix, $nbLits, $nbPers, $image, $description)
      {
-          $this->prix = $id;
-          $this->nbLits = $lits;
+          $this->numChambre = $numChambre;
+          $this->prix = $prix;
+          $this->nbLits = $nbLits;
+          $this->nbPers = $nbPers;
+          $this->image = $image;
+          $this->description = $description;
      }
 
-     public function getPrix(){
+
+     /**
+      * Get the value of numChambre
+      */
+     public function getNumChambre()
+     {
+          return $this->numChambre;
+     }
+
+     /**
+      * Set the value of numChambre
+      */
+     public function setNumChambre($numChambre): self
+     {
+          $this->numChambre = $numChambre;
+
+          return $this;
+     }
+
+     /**
+      * Get the value of prix
+      */
+     public function getPrix()
+     {
           return $this->prix;
      }
 
-     public function setPrix($prix){
+     /**
+      * Set the value of prix
+      */
+     public function setPrix($prix): self
+     {
           $this->prix = $prix;
+
+          return $this;
+     }
+
+     /**
+      * Get the value of nbLits
+      */
+     public function getNbLits()
+     {
+          return $this->nbLits;
+     }
+
+     /**
+      * Set the value of nbLits
+      */
+     public function setNbLits($nbLits): self
+     {
+          $this->nbLits = $nbLits;
+
+          return $this;
+     }
+
+     /**
+      * Get the value of nbPers
+      */
+     public function getNbPers()
+     {
+          return $this->nbPers;
+     }
+
+     /**
+      * Set the value of nbPers
+      */
+     public function setNbPers($nbPers): self
+     {
+          $this->nbPers = $nbPers;
+
+          return $this;
+     }
+
+     /**
+      * Get the value of image
+      */
+     public function getImage()
+     {
+          return $this->image;
+     }
+
+     /**
+      * Set the value of image
+      */
+     public function setImage($image): self
+     {
+          $this->image = $image;
+
+          return $this;
+     }
+
+     /**
+      * Get the value of description
+      */
+     public function getDescription()
+     {
+          return $this->description;
+     }
+
+     /**
+      * Set the value of description
+      */
+     public function setDescription($description): self
+     {
+          $this->description = $description;
+
+          return $this;
      }
 }
-
-$c = new Chambre(20, 2);
-
-$c->setPrix(1000);
-$c->setPrix(2500);
-
-var_dump($c);

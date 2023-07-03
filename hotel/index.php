@@ -1,4 +1,8 @@
-<?php include 'component/header.php'; ?> 
+<?php 
+include "inc.php";
+include 'component/header.php'; 
+
+?> 
 
 
 <div class="row">
@@ -10,9 +14,11 @@ for ($i=0; $i < 2 ; $i++): ?>
           <div class="card-body">
                <a href="chambre.php?idChambre=1" class="btn btn-outline-success my-1 w-100">Détail</a>
 
-               <a href="chambre.php?idChambre=1" class="btn btn-outline-success my-1 w-100">Update</a>
-               <a href="chambre.php?idChambre=1" class="btn btn-outline-danger my-1 w-100">Delete</a>
-
+               <!-- access admin -->
+               <?php if( isset($_SESSION['user']) && unserialize($_SESSION['user'])->getRole() == "admin" ): ?>
+                    <a href="chambre.php?idChambre=1" class="btn btn-outline-success my-1 w-100">Update</a>
+                    <a href="chambre.php?idChambre=1" class="btn btn-outline-danger my-1 w-100">Delete</a>
+               <?php endif; ?>
           </div>
      </div>
 <?php endfor; ?> 

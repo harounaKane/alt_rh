@@ -1,2 +1,6 @@
-<?php include 'component/header.php'; ?> 
+<?php 
+include "inc.php";
+include 'component/header.php'; 
+
+?> 
 
