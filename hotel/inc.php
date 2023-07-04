@@ -18,6 +18,11 @@ function executerRequete($query, $params = array()){
      
      //le système les resources pour prépare la requête
      $stmt = $pdo->prepare($query);
+
+     foreach($params as $indice => $value){
+          //sur chaque indice, on remet la valeur en echappant les caractères spéciaux (htmlentities)
+          $params[$indice] = htmlentities($value);
+     }
      
      //exécutionde la requête
      $stmt->execute($params);

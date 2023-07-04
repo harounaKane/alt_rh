@@ -21,7 +21,7 @@ if( isset($_GET['idChambre']) && ctype_digit($_GET['idChambre'])): ?>
      <div> Lits : <?= $chambre->getNbLits() ?> </div>
      <div> Personnes : <?= $chambre->getNbPers() ?> </div>
      <div> 
-          <?= $chambre->getDescription() ?>
+          <?= htmlentities($chambre->getDescription()) ?>
      </div>
 
      <a href="reserver.php?id_chambre=<?= $chambre->getNumChambre() ?>" class="btn btn-success">Réserver</a>

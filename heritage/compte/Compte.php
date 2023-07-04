@@ -17,7 +17,7 @@ class Compte{
 
      public function retirer($montant){
           if( $montant > $this->solde ){
-               echo "montant ". $montant . " supérieur à votre solde: " . $this->solde;
+               throw new Exception("montant ". $montant . " supérieur à votre solde: " . $this->solde);
           }else{
                $this->solde -= $montant;
           } 

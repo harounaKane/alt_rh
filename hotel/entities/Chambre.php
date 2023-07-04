@@ -11,8 +11,8 @@ class Chambre {
      public function __construct($numChambre, $prix, $nbLits, $nbPers, $image, $description)
      {
           $this->numChambre = $numChambre;
-          $this->prix = $prix;
-          $this->nbLits = $nbLits;
+          $this->setPrix( $prix );
+          $this->setNbLits( $nbLits );
           $this->nbPers = $nbPers;
           $this->image = $image;
           $this->description = $description;
@@ -50,6 +50,10 @@ class Chambre {
       */
      public function setPrix($prix): self
      {
+          if($prix < 100 || !is_numeric($prix)){
+               throw new Exception("le  prix doit être => 100 ");
+          }
+
           $this->prix = $prix;
 
           return $this;
@@ -68,6 +72,10 @@ class Chambre {
       */
      public function setNbLits($nbLits): self
      {
+          if($nbLits < 1 || !is_numeric($nbLits)){
+               throw new Exception("le  nb lit doit être => 1 ");
+          }
+
           $this->nbLits = $nbLits;
 
           return $this;
