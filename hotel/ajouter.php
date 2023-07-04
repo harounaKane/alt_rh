@@ -2,6 +2,7 @@
 include "inc.php";
 include 'component/header.php'; 
 
+//ajout de nouvelle chambre
 if( isset($_POST["prix"]) ){
      extract($_POST);
      $nom_fichier = "";
@@ -51,6 +52,7 @@ if( isset($_POST["prix"]) ){
 }
 
 ?> 
+<h2 class="text-center">Ajouter chambre</h2>
 
 <form action="" method="post" enctype="multipart/form-data">
 

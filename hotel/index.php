@@ -17,18 +17,16 @@ while( $res = $stmt->fetch() ){
 }
 
 
-//UPDATE & DELETE
-if( isset($_GET['action']) ){
-     $action = $_GET['action'];
+//DELETE
+if( isset($_GET['action']) && $_GET['action'] == "delete" ){
+     $id = $_GET['idChambre'];
 
-     switch($action){
-          case 'delete':
-               echo "cas delete";
-               break;
-          case 'update':
-               echo "cas update";
-               break;
-     }
+     $query = "DELETE FROM chambre WHERE numChambre = :id";
+     $stmt = executerRequete($query, ['id' => $id]);
+
+     //redirection vers l'index. ça permet d'éviter la double soumission du formulaire
+     header("location: .");
+     exit;
 }
 
 ?> 
@@ -45,7 +43,7 @@ foreach ($tabChambres as $chambre): ?>
 
                <!-- access admin -->
                <?php if( isset($_SESSION['user']) && unserialize($_SESSION['user'])->getRole() == "admin" ): ?>
-                    <a href="?action=update&idChambre=<?= $chambre->getNumChambre(); ?>" class="btn btn-outline-success my-1 w-100">Update</a>
+                    <a href="modifier.php?action=update&idChambre=<?= $chambre->getNumChambre(); ?>" class="btn btn-outline-success my-1 w-100">Update</a>
                     <a href="?action=delete&idChambre=<?= $chambre->getNumChambre(); ?>" class="btn btn-outline-danger my-1 w-100">Delete</a>
                <?php endif; ?>
           </div>
