@@ -13,15 +13,15 @@
 
      <header class="text-center bg-dark p-5 text-white mb-3">
           
-     
-                    <a href="?action=new_user" class="btn btn-success">Ajouter user</a>
-                    <a href="?action=new_voiture" class="btn btn-success">Ajouter Voiture</a>
+          <?php if(isset($_SESSION['user'])): ?>
+               <a href="?action=new_user" class="btn btn-success">Ajouter user</a>
+               <a href="?action=new_voiture" class="btn btn-success">Ajouter Voiture</a>
              
-
                <a href="?action=deconnexion" class="btn btn-danger">Deconnexion</a>
-        
+          <?php else: ?>
                <a href="?action=inscription" class="btn btn-success">Inscription</a>
                <a href="?action=connexion" class="btn btn-success">Connexion</a>
+          <?php endif; ?>
        
      </header>
      <main class="container-fluid">
