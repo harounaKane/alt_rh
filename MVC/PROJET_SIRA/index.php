@@ -1,14 +1,23 @@
 <?php
+session_start();
+
+//define('RACINE', '/projet_sira/');
 
 include "entities/Membre.php";
 
-$post = [
-     "id_membre" =>12,
-     "pseudo"    => "toto",
-     "prenom"    => "Jean",
-     "machin"    => 450
-];
+include "model/ModelGenerique.php";
 
-$m = new Membre($post);
+include "model/MembreModel.php";
 
-var_dump($m);
+include "controller/MembreController.php";
+
+
+$membre = new MembreController();
+
+$membre->membreAction();
+
+if( !isset($_GET['action']) ){
+     
+     include "views/home.phtml";
+}
+
