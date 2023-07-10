@@ -19,7 +19,7 @@
             <?php if(isset($_SESSION['user'])): ?>
                 <?php if(unserialize($_SESSION['user'])->getStatut()): ?>
                     <a href="?action=gestionMembre" class="btn btn-success" >Gestion membre</a>
-                    <a href="?action=" class="btn btn-success" >Gestion agence</a>
+                    <a href="?actionAgence=gestionAgence" class="btn btn-success" >Gestion agence</a>
                     <a href="?action=" class="btn btn-success" >Gestion véhicule</a>
                     <a href="?action=" class="btn btn-success" >Gestion commandes</a>
                     

@@ -20,4 +20,12 @@ abstract class ModelGenerique
 
         return $stmt;
     }
+
+    public function getOne($table, $colonne,  $id){
+        $query = " SELECT * FROM $table WHERE $colonne = :id";
+        $res = $this->executeRequete($query, ["id" => $id]);
+        return $res->fetch();
+
+
+    }
 }
