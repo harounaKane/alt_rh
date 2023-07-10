@@ -18,14 +18,14 @@
 
             <?php if(isset($_SESSION['user'])): ?>
                 <?php if(unserialize($_SESSION['user'])->getStatut()): ?>
-                    <a href="?action=inscription" class="btn btn-success" >Gestion membre</a>
-                    <a href="?action=inscription" class="btn btn-success" >Gestion agence</a>
-                    <a href="?action=inscription" class="btn btn-success" >Gestion véhicule</a>
-                    <a href="?action=inscription" class="btn btn-success" >Gestion commandes</a>
+                    <a href="?action=gestionMembre" class="btn btn-success" >Gestion membre</a>
+                    <a href="?action=" class="btn btn-success" >Gestion agence</a>
+                    <a href="?action=" class="btn btn-success" >Gestion véhicule</a>
+                    <a href="?action=" class="btn btn-success" >Gestion commandes</a>
                     
                 <?php endif; ?>
 
-            <a href="?action=deconnexion" class="btn btn-success">commandes</a>
+            <a href="?action=" class="btn btn-success">commandes</a>
             <a href="?action=deconnexion" class="btn btn-danger">Deconnexion</a>
             <?php else: ?>
                 <a href="?action=inscription" class="btn btn-success" >Inscription</a>
