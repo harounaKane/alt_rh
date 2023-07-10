@@ -55,10 +55,10 @@
                <div class="col-6 mt-4">
                    <label for="statut">Photo</label>
                    <input type="file" name="photo" class="form-control">
-                   
+
                     <?php if(isset($agenceActuelle)): ?>
                         <img src="public/img/agence/<?= $agenceActuelle->getPhoto() ?>" alt="">
-
+                        <input type="hidden" name="photoActuelle" value="<?= $agenceActuelle->getPhoto() ?>">
                     <?php endif; ?>
 
                </div>  

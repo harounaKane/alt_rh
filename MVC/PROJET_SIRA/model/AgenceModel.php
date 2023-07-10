@@ -31,4 +31,19 @@ class AgenceModel extends ModelGenerique{
           return $tab;
      }
 
+     public function update(Agence $agence){
+        //  var_dump($agence); die;  
+          $query = "UPDATE agence SET titre = :titre, adresse = :adr, ville = :ville, cp = :cp, description = :desc, photo = :photo WHERE id_agence = :id";
+
+          $this->executeRequete($query, [
+               "titre"   => $agence->getTitre(),
+               "adr"  => $agence->getAdresse(),
+               "ville"   => $agence->getVille(),
+               "cp"      => $agence->getCp(),
+               "desc"    => $agence->getDescription(),
+               "photo"   => $agence->getPhoto(),
+               "id"      => $agence->getId_agence()
+          ]);
+     }
+
 }
