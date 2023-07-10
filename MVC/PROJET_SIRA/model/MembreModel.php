@@ -52,4 +52,22 @@ class MembreModel extends ModelGenerique
         return new Membre($stmt->fetch());
     }
 
+    public function update(Membre $membre){
+        $query = "UPDATE membre SET pseudo = :pseudo, nom = :nom, prenom = :prenom, civilite = :sexe, statut = :statut, email = :email WHERE id_membre = :id";
+
+        $stmt = $this->executeRequete($query, [
+            "pseudo"    => $membre->getPseudo(),
+            "nom"       => $membre->getNom(),
+            "prenom"    => $membre->getPrenom(),
+            "sexe"      => $membre->getCivilite(),
+            "statut"    => $membre->getStatut(),
+            "email"     => $membre->getEmail(),
+            "id"        => $membre->getId_membre()
+        ]);
+    }
+
+    public function delete(Membre $membre){
+        $this->executeRequete("DELETE FROM membre WHERE id_membre = :id", ["id" => $membre->getId_membre()]);
+    }
+
 }
