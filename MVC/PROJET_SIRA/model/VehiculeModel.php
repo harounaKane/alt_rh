@@ -34,4 +34,23 @@ class VehiculeModel extends ModelGenerique{
           return new Vehicule($stmt->fetch());
      }
 
+     public function update(Vehicule $vehicule){
+          $query = "UPDATE vehicule SET id_agence = :agence, titre = :titre, marque = :marque, modele = :modele, description = :desc, photo = :photo, prix_journalier = :prix WHERE id_vehicule = :id";
+
+          $this->executeRequete($query, [
+               "agence"  => $vehicule->getId_agence(),
+               "titre"   => $vehicule->getTitre(),
+               "marque"  => $vehicule->getMarque(),
+               "modele"  => $vehicule->getModele(),
+               "desc"    => $vehicule->getDescription(),
+               "photo"   => $vehicule->getPhoto(),
+               "prix"    => $vehicule->getPrix_journalier(),
+               "id"      => $vehicule->getId_vehicule()
+          ]);
+     }
+
+     public function delete(Vehicule $vehicule){
+          $this->executeRequete("DELETE FROM vehicule WHERE id_vehicule = :id", ['id' => $vehicule->getId_vehicule()]);
+     }
+
 }

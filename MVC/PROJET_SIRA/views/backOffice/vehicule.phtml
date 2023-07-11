@@ -16,7 +16,7 @@
           <?php foreach($vehicules as $vehicule): ?>
                <tr>
                     <td> <?= $vehicule->getId_vehicule() ?> </td>
-                    <td> <?= $vehicule->getId_agence() ?> </td>
+                    <td> <?= $agenceMdl->getAgence($vehicule->getId_agence())->getTitre() ?> </td>
                     <td> <?= $vehicule->getTitre() ?> </td>
                     <td> <?= $vehicule->getMarque() ?> </td>
                     <td> <?= $vehicule->getModele() ?> </td>
