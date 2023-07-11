@@ -50,6 +50,10 @@ class VehiculeModel extends ModelGenerique{
      }
 
      public function delete(Vehicule $vehicule){
+          if( $this->exists("commande", "id_vehicule", $vehicule->getId_vehicule()) ){
+               throw new Exception("Ce véhicule ne peut être delete");
+          }
+         
           $this->executeRequete("DELETE FROM vehicule WHERE id_vehicule = :id", ['id' => $vehicule->getId_vehicule()]);
      }
 

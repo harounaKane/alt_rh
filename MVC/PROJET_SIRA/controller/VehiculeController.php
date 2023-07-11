@@ -5,6 +5,12 @@ class VehiculeController extends ControllerAbstract{
      public function vehiculeAction(){
 
           if( isset($_GET['actionVehicule']) ){
+
+               if( !$this->isAdmin() ){
+                    header("location: ?actionFront=connexion");
+                    exit();
+               }
+
                $action = $_GET['actionVehicule'];
 
                $agenceMdl = new AgenceModel();

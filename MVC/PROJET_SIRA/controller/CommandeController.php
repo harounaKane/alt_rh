@@ -4,6 +4,12 @@ class CommandeController extends ControllerAbstract{
     
      public function commandeAction(){
 
+          // if( !$this->isAdmin() ){
+          //      header("location: ?action=connexion");
+          //      exit();
+          // }
+
+          $cmdMdl = new CommandeModel();
 
           if( isset($_GET['actionCmd']) ){
 
@@ -18,6 +24,10 @@ class CommandeController extends ControllerAbstract{
 
                          if( isset($_POST['date_heure_depart']) ){
                               $cmd = new Commande($_POST);
+                              $cmdMdl->inserer($cmd);
+                              
+                              header("location: .");
+                              exit;
                          }
 
                          $vehMdl = new VehiculeModel();
