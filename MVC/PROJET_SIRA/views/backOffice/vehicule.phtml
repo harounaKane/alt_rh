@@ -1,5 +1,14 @@
 <?php ob_start(); ?>
 
+     <div class="col-2 mt-3">
+          <select name="id_agence" id="filtre" class="form-select">
+               <option value="">-- selectioner une agence --</option>
+               <?php foreach($agences as $agence): ?>
+                    <option href="?id=<?= $agence->getId_agence() ?>"><?= $agence->getTitre() ?>
+                    </option>
+               <?php endforeach; ?>
+          </select>
+     </div>
      <table class="table table-striped mt-3 table-sm">
           <tr class="table-dark">
                <td>Id </td>
@@ -82,6 +91,13 @@
            </div>
            <input type="submit" class="btn btn-success mt-3">
      </form>
+
+     <script>
+
+          document.getElementById('filtre').onchange = function(){
+               console.log(this.children[this.selectedIndex].getAttribute('href'));
+          }
+     </script>
 
 <?php
 $content = ob_get_clean();
