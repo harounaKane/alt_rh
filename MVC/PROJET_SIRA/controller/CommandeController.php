@@ -8,7 +8,10 @@ class CommandeController extends ControllerAbstract{
           //      header("location: ?action=connexion");
           //      exit();
           // }
-
+          
+          $vehMdl = new VehiculeModel();
+          $agenceMdl = new AgenceModel();
+          $membreMdl = new MembreModel();
           $cmdMdl = new CommandeModel();
 
           if( isset($_GET['actionCmd']) ){
@@ -30,11 +33,29 @@ class CommandeController extends ControllerAbstract{
                               exit;
                          }
 
-                         $vehMdl = new VehiculeModel();
 
                          $vehiculeCmd = $vehMdl->getVehicule($_GET['vehicule']);
                
                          include "views/reserver.phtml";
+                         break;
+
+                    case "gestionCmd":
+                         if( !$this->isAdmin() ){
+                             header("location: .");
+                             exit; 
+                         }
+                         $commandes = $cmdMdl->commandes();
+
+                         include "views/backOffice/commandes.phtml";
+                         break;
+
+                    case "gestionCmdPerso":
+                         if( !$this->isConnected() ){
+                              header("location: .");
+                              exit; 
+                          }
+                          $commandes = $cmdMdl->commandesByClient(unserialize($_SESSION['user'])->getId_membre());
+                          include "views/backOffice/commandes.phtml";
                          break;
                }
           }

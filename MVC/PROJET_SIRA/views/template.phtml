@@ -21,11 +21,11 @@
                     <a href="?action=gestionMembre" class="btn btn-success" >Gestion membre</a>
                     <a href="?actionAgence=gestionAgence" class="btn btn-success" >Gestion agence</a>
                     <a href="?actionVehicule=gestionVehicule" class="btn btn-success" >Gestion véhicule</a>
-                    <a href="?action=" class="btn btn-success" >Gestion commandes</a>
+                    <a href="?actionCmd=gestionCmd" class="btn btn-success" >Gestion commandes</a>
                     
                 <?php endif; ?>
 
-            <a href="?action=" class="btn btn-success">commandes</a>
+            <a href="?actionCmd=gestionCmdPerso" class="btn btn-success">commandes</a>
             <a href="?actionFront=deconnexion" class="btn btn-danger">Deconnexion</a>
             <?php else: ?>
                 <a href="?actionFront=inscription" class="btn btn-success" >Inscription</a>
@@ -36,6 +36,12 @@
     </header>
 
     <main class="container">
+        <?php if(isset($_SESSION['msg'])): ?>
+            <div class="message text-center alert alert-success">
+                <?= $_SESSION['msg']; ?>
+            </div>
+        <?php endif; ?>
+
         <?= $content ?? 'pas de vue'; ?>
     </main>
 
@@ -43,3 +49,8 @@
         <a href="" class="text-white text-decoration-none">mentions légales</a>
         <a href="" class="text-white text-decoration-none">Conditions générales de ventes</a>
     </footer>
+
+    <?php unset($_SESSION['msg']); ?>
+    <script src="public/js/flashBag.js"></script>
+</body>
+</html>

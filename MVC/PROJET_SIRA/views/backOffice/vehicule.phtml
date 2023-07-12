@@ -4,7 +4,8 @@
           <select name="id_agence" id="filtre" class="form-select">
                <option value="">-- selectioner une agence --</option>
                <?php foreach($agences as $agence): ?>
-                    <option href="?id=<?= $agence->getId_agence() ?>"><?= $agence->getTitre() ?>
+                    <option href="?actionVehicule=filtre&id_agence=<?= $agence->getId_agence() ?>">
+                         <?= $agence->getTitre() ?>
                     </option>
                <?php endforeach; ?>
           </select>
@@ -95,7 +96,8 @@
      <script>
 
           document.getElementById('filtre').onchange = function(){
-               console.log(this.children[this.selectedIndex].getAttribute('href'));
+               window.location.href = this.children[this.selectedIndex].getAttribute('href');
+          
           }
      </script>
 

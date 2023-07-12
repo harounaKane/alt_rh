@@ -34,7 +34,7 @@ class MembreModel extends ModelGenerique
     }
 
     public function listeMembre(){
-        $stmt = $this->executeRequete("SELECT * FROM membre");
+        $stmt = $this->executeRequete("SELECT * FROM membre ORDER BY statut DESC, civilite ASC");
 
         $tab = [];
 
@@ -68,10 +68,17 @@ class MembreModel extends ModelGenerique
 
     public function delete(Membre $membre){
         if( $this->exists("commande", "id_membre", $membre->getId_membre()) ){
-            throw new Exception("Ce membre possède au moins une commande");
+            $_SESSION['msg'] = "Ce membre possède au moins une commande";
+            //throw new Exception("Ce membre possède au moins une commande");
+            return;
         }
 
-        $this->executeRequete("DELETE FROM membre WHERE id_membre = :id", ["id" => $membre->getId_membre()]);
+        $stmt = $this->executeRequete("DELETE FROM membre WHERE id_membre = :id", ["id" => $membre->getId_membre()]);
+
+        if($stmt->rowCount() != 0){
+            $_SESSION['msg'] = "le membre est supprimé avec success";
+        }
+        
     }
 
 }

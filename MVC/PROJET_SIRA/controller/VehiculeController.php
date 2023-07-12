@@ -74,6 +74,10 @@ class VehiculeController extends ControllerAbstract{
 
                          header("location: ?actionVehicule=gestionVehicule");
                          exit();
+
+                    case "filtre":
+                         $vehicules = $vehiculeMdl->vehiculesByAgence($_GET['id_agence']);
+                         break;
                }
 
                

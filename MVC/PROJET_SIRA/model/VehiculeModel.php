@@ -51,10 +51,29 @@ class VehiculeModel extends ModelGenerique{
 
      public function delete(Vehicule $vehicule){
           if( $this->exists("commande", "id_vehicule", $vehicule->getId_vehicule()) ){
-               throw new Exception("Ce véhicule ne peut être delete");
+               $_SESSION['msg'] = "Ce véhicule ne peut être delete";
+               //throw new Exception("Ce véhicule ne peut être delete");
+               return;
           }
          
-          $this->executeRequete("DELETE FROM vehicule WHERE id_vehicule = :id", ['id' => $vehicule->getId_vehicule()]);
+          $stmt = $this->executeRequete("DELETE FROM vehicule WHERE id_vehicule = :id", ['id' => $vehicule->getId_vehicule()]);
+
+          if($stmt->rowCount() != 0){
+               $_SESSION['msg'] = "le membre est supprimé avec success";
+           }
+     }
+
+     public function vehiculesByAgence(int $id_agence){
+          $query = "SELECT * FROM vehicule WHERE id_agence = :id";
+          $stmt = $this->executeRequete($query, ["id" => $id_agence]);
+
+          $tab = [];
+
+          while($res = $stmt->fetch()){
+               $tab[] = new Vehicule($res);
+          }
+
+          return $tab;
      }
 
 }

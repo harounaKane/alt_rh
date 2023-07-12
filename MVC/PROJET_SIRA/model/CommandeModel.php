@@ -15,4 +15,30 @@ class CommandeModel extends ModelGenerique{
                "total"        => $commande->getPrix_total()
           ]);
      }
+
+     public function commandes(){
+          $stmt = $this->executeRequete("SELECT * FROM commande ORDER BY date_heure_fin");
+
+        $tab = [];
+
+        while($res = $stmt->fetch()){
+            $m = new Commande($res);
+            $tab[] = $m;
+        }
+
+        return $tab;
+     }
+
+     public function commandesByClient(int $id_client){
+          $stmt = $this->executeRequete("SELECT * FROM commande WHERE id_membre = :id ORDER BY date_heure_fin", ['id' => $id_client]);
+
+        $tab = [];
+
+        while($res = $stmt->fetch()){
+            $m = new Commande($res);
+            $tab[] = $m;
+        }
+
+        return $tab;
+     }
 }
