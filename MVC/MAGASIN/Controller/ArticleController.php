@@ -25,6 +25,13 @@ class ArticleController extends AbstractController{
 
                          $this->render("article/ajouter");
                          break;
+
+                    case "toShopping":
+                         $article = $artModel->getArticle($_GET['id']);
+                         
+                         //$this->render("article/article", compact([$article]));
+                         $this->render("article/article", ["article" => $article]);
+                         break;
                }
           }
      }

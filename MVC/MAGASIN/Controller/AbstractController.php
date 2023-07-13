@@ -23,7 +23,6 @@ abstract class AbstractController{
           if( !file_exists($page) ){
                throw new Exception("Cette page n'existe pas. En tout cas pas dans ce site");
           }
-
           
           !empty($data) ? extract($data) : '';
 
