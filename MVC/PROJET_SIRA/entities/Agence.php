@@ -23,7 +23,7 @@ class Agence
              }
         }
 
-   }
+    }
    
     /**
      * Get the value of id_agence
