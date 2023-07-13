@@ -2,10 +2,30 @@
 
 namespace App\Controller;
 
-class ArticleController{
+use App\Entities\Article;
+use App\Model\ArticleModel;
 
-     function __construct()
-     {
-          var_dump("dans le controller article");
+class ArticleController extends AbstractController{
+
+     function article(){
+          if( isset($_GET['action']) ){
+               $action = $_GET['action'];
+
+               $artModel = new ArticleModel();
+
+               switch($action){
+                    case "ajouter":
+
+                         if( isset($_POST['libelle']) ){
+                              $artModel->inserer(new Article($_POST));
+
+                              header('location: .');
+                              exit;
+                         }
+
+                         $this->render("article/ajouter");
+                         break;
+               }
+          }
      }
 }

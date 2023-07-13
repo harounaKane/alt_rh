@@ -39,14 +39,17 @@ abstract class ModelGenerique{
         return $stmt->rowCount() != 0;
      }
 
-     public function validate($champ, $min = 2, $max = 30){
+     public function validate($champ, $valeur, $min = 2, $max = 30){
           //supprime espace av et ap
-          $champ = trim($champ);
+          $valeur = trim($valeur);
 
-          if( strlen($champ) >= $min && strlen($champ) <= $max ){
-               return $champ;
+          if( strlen($valeur) >= $min && strlen($valeur) <= $max ){
+               return $valeur;
           }else{
                self::$isValide = false;
+               $_SESSION['errors'][$champ] = "saisie incorrecte";
+               return $valeur;
+
           }
 
      }
