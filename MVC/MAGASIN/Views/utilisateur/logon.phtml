@@ -1,0 +1,50 @@
+
+    <form action="" method="post">
+        <div class="row">
+            <div class="col-6 mt-4">
+                <label for="pseudo">Login</label>
+                <input type="text" name="login" class="form-control" placeholder="Pseudo" value="<?= $user->getLogin(); ?>">
+            </div>
+            <div class="col-6 mt-4">
+                <label for="email">Votre email</label>
+                <input type="email" name="email" class="form-control" placeholder="Email">
+            </div>
+            <div class="col-6 mt-4">
+                <label for="mdp">Mot de passe</label>
+                <input type="password" name="mdp" class="form-control" >
+            </div>
+            <div class="col-6 mt-4">
+                <label for="civilite">Civilité</label>
+                <select name="sexe" class="form-select">
+                    <option value="homme">homme</option>
+                    <option value="femme">femme</option>
+                </select>
+            </div>
+            <div class="col-6 mt-4">
+                <label for="nom">Votre nom</label>
+                <input type="text" name="nom" class="form-control" placeholder="Nom">
+            </div>
+    
+            <div class="col-6 mt-4">
+                <label for="prenom">Votre prénom</label>
+                <input type="text" name="prenom" class="form-control" placeholder="Prénom">
+            </div>   
+            <div class="col-6 mt-4">
+                <label for="prenom">Téléphone</label>
+                <input type="text" name="tel" class="form-control" placeholder="0102030405">
+            </div>    
+            <div class="col-6 mt-4">
+                <label for="prenom">Adresse</label>
+                <input type="text" name="adresse" class="form-control" placeholder="adresse">
+            </div>     
+            <div class="col-6 mt-4">
+                <label for="prenom">Code postal</label>
+                <input type="text" name="cp" class="form-control" placeholder="code postal">
+            </div>  
+            <div class="col-6 mt-4">
+                <label for="prenom">Ville</label>
+                <input type="text" name="ville" class="form-control" placeholder="ville">
+            </div>  
+        </div>
+        <input type="submit" class="btn btn-success mt-3">
+    </form>

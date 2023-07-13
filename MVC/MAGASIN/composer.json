@@ -4,13 +4,7 @@
           "App\\Entities\\": "Entities",
           "App\\Controller\\": "Controller",
           "App\\Model\\" : "Model"
-     },
-     "classmap": [
-          "Entities/Tata.php"
-     ],
-     "files": [
-          "fonctions.php"
-     ]
+     }
 
    }  
 }

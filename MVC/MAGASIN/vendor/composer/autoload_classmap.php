@@ -14,5 +14,4 @@ return array(
     'App\\Entities\\Panier' => $baseDir . '/Entities/Panier.php',
     'App\\Entities\\Utilisateur' => $baseDir . '/Entities/Utilisateur.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
-    'Tata' => $baseDir . '/Entities/Tata.php',
 );
